@@ -272,16 +272,20 @@ void FlightModeManager::start_flight_task()
 			error = switchTask(FlightTaskIndex::ManualPositionSmoothVel);
 			break;
 
-		case 4:
-		default:
-			if (_param_mpc_pos_mode.get() != 4) {
-				PX4_ERR("MPC_POS_MODE %d invalid, resetting", _param_mpc_pos_mode.get());
-				_param_mpc_pos_mode.set(4);
-				_param_mpc_pos_mode.commit();
-			}
-
-			error = switchTask(FlightTaskIndex::ManualAcceleration);
+		case 5: // Add case for new task: MyTask
+			error = switchTask(FlightTaskIndex::MyTask);
 			break;
+
+		// case 4:
+		// default:
+		// 	if (_param_mpc_pos_mode.get() != 4) {
+		// 		PX4_ERR("MPC_POS_MODE %d invalid, resetting", _param_mpc_pos_mode.get());
+		// 		_param_mpc_pos_mode.set(4);
+		// 		_param_mpc_pos_mode.commit();
+		// 	}
+
+		// 	error = switchTask(FlightTaskIndex::ManualAcceleration);
+		// 	break;
 		}
 
 		if (error != FlightTaskError::NoError) {
