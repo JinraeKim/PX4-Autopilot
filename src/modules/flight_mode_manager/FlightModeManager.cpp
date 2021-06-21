@@ -282,6 +282,11 @@ void FlightModeManager::start_flight_task()
 
 			error = switchTask(FlightTaskIndex::ManualAcceleration);
 			break;
+
+		case 5: // Add case for new task: MyTask
+			error = switchTask(FlightTaskIndex::MyTask);
+			break;
+
 		}
 
 		if (error != FlightTaskError::NoError) {
